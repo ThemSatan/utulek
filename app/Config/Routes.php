@@ -7,4 +7,12 @@ use CodeIgniter\Router\RouteCollection;
  */
 //$routes->get('/', 'Home::index');
 
-$routes->get('/', 'mainController::catsPage');
+$routes->get('/', 'MainController::catsPage');
+$routes->get('CatPage', 'MainController::catsPage');
+
+$routes->get('CatModel/new', 'MainController::addCat');
+$routes->post('CatModel/create', 'MainController::createForm');
+
+$routes->get('CatModel/arrayList', 'MainController::showAll');
+$routes->get('CatModel/edit/(:num)', 'MainController::editCat/$1');
+$routes->put('CatModel/edit', 'MainController::editForm/update');
