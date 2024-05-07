@@ -16,3 +16,6 @@ $routes->post('CatModel/create', 'MainController::createForm');
 $routes->get('CatModel/arrayList', 'MainController::showAll');
 $routes->get('CatModel/edit/(:num)', 'MainController::editCat/$1');
 $routes->put('CatModel/edit', 'MainController::editForm/update');
+
+$routes->get('CatModel/delete/(:num)', 'MainController::confirmDelete/$1');
+$routes->delete('CatModel/delete', 'MainController::deleteForm/delete');

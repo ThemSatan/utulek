@@ -7,8 +7,6 @@ echo form_open('CatModel/edit');
 //var_dump($array);
 ?>
 
-
-
 <div class="container">
             <div class="row">
                 <div class="col-3"></div>

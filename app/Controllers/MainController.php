@@ -97,4 +97,18 @@ class MainController extends BaseController
 
         return redirect()->route('CatPage');
     }
+
+    function confirmDelete($id){
+        $data['array']= $this->kModel->find($id);
+        $data['title']="Potvrdit";
+        return view('DeleteCat',$data);
+    }
+
+    function deleteForm(){
+        $id = $this->request->getPost('id_kocka');
+        $return = $this->kModel->delete($id);
+       
+        //var_dump($return);
+        return redirect()->route('CatPage');
+    }
 }
