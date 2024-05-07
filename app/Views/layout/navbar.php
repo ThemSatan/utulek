@@ -16,6 +16,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url('CatPage')?>">Naše Kočky</a>
                 </li>
+                <li class="nav-item">
+                    <?php
+                    echo anchor('login','Přihlásit',['class' => 'btn btn-info']);
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                    echo anchor('register','Registrovat',['class' => 'btn btn-success']);
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                    if ($logged){
+                        echo anchor('logout','Odhlásit',['class' => 'btn btn-warning']);
+                    }
+                    ?>
+                </li>
             </ul>
         </div>
     </div>

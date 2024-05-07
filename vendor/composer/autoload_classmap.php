@@ -6,8 +6,13 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controllers\\Auth' => $baseDir . '/app/Controllers/Auth.php',
     'App\\Controllers\\BaseController' => $baseDir . '/app/Controllers/BaseController.php',
     'App\\Controllers\\Home' => $baseDir . '/app/Controllers/Home.php',
+    'App\\Controllers\\MainController' => $baseDir . '/app/Controllers/MainController.php',
+    'App\\Models\\BreedModel' => $baseDir . '/app/Models/BreedModel.php',
+    'App\\Models\\CatModel' => $baseDir . '/app/Models/CatModel.php',
+    'App\\Models\\UserModel' => $baseDir . '/app/Models/UserModel.php',
     'CodeIgniter\\API\\ResponseTrait' => $vendorDir . '/codeigniter4/framework/system/API/ResponseTrait.php',
     'CodeIgniter\\Autoloader\\Autoloader' => $vendorDir . '/codeigniter4/framework/system/Autoloader/Autoloader.php',
     'CodeIgniter\\Autoloader\\FileLocator' => $vendorDir . '/codeigniter4/framework/system/Autoloader/FileLocator.php',

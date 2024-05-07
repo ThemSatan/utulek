@@ -5,8 +5,10 @@ namespace App\Controllers;
 use App\Models\CatModel as kModel;
 use App\Models\BreedModel as pModel;
 use Config\MyConfig as CModel;
+
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
+use \IonAuth\Libraries\IonAuth;
 
 class MainController extends BaseController
 {
@@ -16,6 +18,15 @@ class MainController extends BaseController
         $this->config = new CModel();
     }
 
+    var $ionAuth;
+
+    public function initController(\CodeIgniter\HTTP\RequestInterface $request, ResponseInterface $response, \Psr\Log\LoggerInterface $logger){
+        parent::initController($request, $response, $logger);
+        $this->ionAuth = new IonAuth();
+    }
+
+    /*MAIN PAGE + ADMIN PAGE*/
+
     function catsPage()
     {
         /*$perpage=$this->config->variable;
@@ -23,12 +34,27 @@ class MainController extends BaseController
         $data["pager"] = $this->kModel->pager;*/
         $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll()/*paginate($perpage)*/;
         $data['title']="Naše Kočky";
+        $data['logged'] = $this->ionAuth->loggedIn();
         return view('CatPage',$data);
     }
+
+    function catsPageAdmin()
+    {
+        /*$perpage=$this->config->variable;
+        $config = new CModel();
+        $data["pager"] = $this->kModel->pager;*/
+        $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll()/*paginate($perpage)*/;
+        $data['title']="Naše Kočky";
+        $data['logged'] = $this->ionAuth->loggedIn();
+        return view('CatPageAdmin',$data);
+    }
+
+    /*CREATING*/
 
     function addCat() {
         $data['array']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
         $data["title"] = "Přidat kočku";
+        $data['logged'] = $this->ionAuth->loggedIn();
         echo view('AddCat', $data);
     }
     
@@ -57,16 +83,22 @@ class MainController extends BaseController
        return redirect()->route('CatPage');
     }
 
+    /*SHOW ALL CATS PAGE*/
+
     function showAll() {
         $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll();
         $data["title"] = "Seznam všech Koček";
         echo view('CatArrayList', $data);
+        $data['logged'] = $this->ionAuth->loggedIn();
     }
+
+    /*EDITING*/
 
     function editCat($id) {
         $data['array']= $this->kModel->where('id_kocka', $id)->orderBy("jmeno","asc")->findAll();
         $data['table']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
         $data['title']="Upravit";
+        $data['logged'] = $this->ionAuth->loggedIn();
         return view('EditCat',$data);
     }
     
@@ -98,11 +130,16 @@ class MainController extends BaseController
         return redirect()->route('CatPage');
     }
 
+    /*DELETION CONFIRMATION PAGE*/
+
     function confirmDelete($id){
         $data['array']= $this->kModel->find($id);
         $data['title']="Potvrdit";
+        $data['logged'] = $this->ionAuth->loggedIn();
         return view('DeleteCat',$data);
     }
+
+    /*DELETING*/
 
     function deleteForm(){
         $id = $this->request->getPost('id_kocka');

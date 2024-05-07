@@ -1,26 +1,15 @@
 <?php return array(
     'root' => array(
         'name' => 'codeigniter4/appstarter',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '32f03c38758b1749ef962ca8a55c179abdac7296',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'almasaeed2010/adminlte' => array(
-            'pretty_version' => 'dev-dependabot/npm_and_yarn/rollup-2.58.0',
-            'version' => 'dev-dependabot/npm_and_yarn/rollup-2.58.0',
-            'reference' => '35531a88987edb9eab8ce937c2f295c80832e14b',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../almasaeed2010/adminlte',
-            'aliases' => array(
-                0 => '9999999-dev',
-            ),
-            'dev_requirement' => false,
-        ),
         'benedmunds/codeigniter-ion-auth' => array(
             'pretty_version' => '4.x-dev',
             'version' => '4.9999999.9999999.9999999-dev',
@@ -31,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'codeigniter4/appstarter' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '32f03c38758b1749ef962ca8a55c179abdac7296',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

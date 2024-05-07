@@ -1,6 +1,11 @@
 <?=$this->extend("layout/master");?>
 <?=$this->section("content");?>
 
+<?php
+echo anchor('CatModel/new','Přidat',['class' => 'btn btn-secondary']);
+echo anchor('CatModel/arrayList','Upravit',['class' => 'btn btn-info']);
+
+?>
 
 <div class='offset-1'>
 <div class='row pt-2'>

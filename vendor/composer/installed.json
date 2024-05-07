@@ -1,53 +1,6 @@
 {
     "packages": [
         {
-            "name": "almasaeed2010/adminlte",
-            "version": "dev-dependabot/npm_and_yarn/rollup-2.58.0",
-            "version_normalized": "dev-dependabot/npm_and_yarn/rollup-2.58.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ColorlibHQ/AdminLTE.git",
-                "reference": "35531a88987edb9eab8ce937c2f295c80832e14b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/35531a88987edb9eab8ce937c2f295c80832e14b",
-                "reference": "35531a88987edb9eab8ce937c2f295c80832e14b",
-                "shasum": ""
-            },
-            "time": "2021-10-10T14:46:12+00:00",
-            "default-branch": true,
-            "type": "library",
-            "installation-source": "dist",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Colorlib"
-                }
-            ],
-            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 4",
-            "homepage": "https://adminlte.io/",
-            "keywords": [
-                "JS",
-                "admin",
-                "back-end",
-                "css",
-                "less",
-                "responsive",
-                "template",
-                "theme",
-                "web"
-            ],
-            "support": {
-                "issues": "https://github.com/ColorlibHQ/AdminLTE/issues",
-                "source": "https://github.com/ColorlibHQ/AdminLTE/tree/dependabot/npm_and_yarn/rollup-2.58.0"
-            },
-            "install-path": "../almasaeed2010/adminlte"
-        },
-        {
             "name": "benedmunds/codeigniter-ion-auth",
             "version": "4.x-dev",
             "version_normalized": "4.9999999.9999999.9999999-dev",
