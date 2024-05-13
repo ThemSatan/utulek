@@ -29,31 +29,22 @@ class MainController extends BaseController
 
     function catsPage()
     {
-        /*$perpage=$this->config->variable;
+        $perpage=$this->config->variable;
         $config = new CModel();
-        $data["pager"] = $this->kModel->pager;*/
-        $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll()/*paginate($perpage)*/;
+        $data['array']= $this->kModel->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['pager'] = $this->kModel->pager;
         $data['title']="Naše Kočky";
         $data['logged'] = $this->ionAuth->loggedIn();
+        $data['adminCheck'] = $this->ionAuth->isAdmin();
         return view('CatPage',$data);
-    }
-
-    function catsPageAdmin()
-    {
-        /*$perpage=$this->config->variable;
-        $config = new CModel();
-        $data["pager"] = $this->kModel->pager;*/
-        $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll()/*paginate($perpage)*/;
-        $data['title']="Naše Kočky";
-        $data['logged'] = $this->ionAuth->loggedIn();
-        return view('CatPageAdmin',$data);
     }
 
     /*CREATING*/
 
     function addCat() {
-        $data['array']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
-        $data["title"] = "Přidat kočku";
+        $data['array']= $this->kModel/*->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')*/->orderBy("id_kocka","asc")->findAll();
+        $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
+        $data['title'] = "Přidat kočku";
         $data['logged'] = $this->ionAuth->loggedIn();
         echo view('AddCat', $data);
     }
@@ -87,7 +78,7 @@ class MainController extends BaseController
 
     function showAll() {
         $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll();
-        $data["title"] = "Seznam všech Koček";
+        $data['title'] = "Seznam všech Koček";
         echo view('CatArrayList', $data);
         $data['logged'] = $this->ionAuth->loggedIn();
     }

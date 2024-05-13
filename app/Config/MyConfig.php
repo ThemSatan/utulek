@@ -6,7 +6,7 @@ use CodeIgniter\Config\BaseConfig;
 class MyConfig extends BaseConfig
 
 {
-    var$variable = 4;
+    var$variable = 12;
 }
 
 ?>

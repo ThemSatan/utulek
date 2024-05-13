@@ -49,6 +49,7 @@ class Auth extends BaseController
 
         $this->ionAuth->login($login, $password);
         $logged = $this->ionAuth->loggedIn();
+        $adminCheck = $this->ionAuth->isAdmin();
         if($logged){
             
             if($this->ionAuth->isAdmin() ){

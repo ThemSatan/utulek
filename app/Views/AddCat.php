@@ -4,6 +4,7 @@
 <?php
 helper('form');
 echo form_open('CatModel/create'); 
+//<input type="number" min="1" max="70" class="form-control" id="inputBreed" placeholder="ID plemena, viz tabulka**" name="plemeno_id">
 ?>
 
 <div class="container">
@@ -38,30 +39,18 @@ echo form_open('CatModel/create');
       <input type="number" min="0.1" max="7" step="0.1" class="form-control" id="inputWeight" aria-describedby="input" placeholder="Sem váha kočky, např.:" name="vaha">
     </div>
 
+    <!--<form action="ActionPage.php" method="post">-->
+
     <div class="form-group">
       <label for="inputUrl" class="form-label mt-4">Plemeno</label>
-      <input type="number" min="1" max="70" class="form-control" id="inputBreed" placeholder="ID plemena, viz tabulka**" name="plemeno_id">
-    </div>
-    <div class="dropdown">
-        <button class="dropbtn">**Tabulka</button>
-        <div class="dropdown-content">
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Plemeno</th>
-                </tr>
-                <?php
+      <input type="hidden" name="id" value=""/>
+      <select id="inputBreed" name="plemeno" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
+      <?php
                     foreach($array as $row){
-                        echo "<tr>
-                
-                        <td>".$row->id_plemeno."</td>
-                        <td>".$row->nazev."</td>
-                        
-                        </tr>";
+                        echo "<option value='".$row->id_plemeno."'>".$row->nazev."</option>";
                     }
                 ?>
-            </table>
-        </div>
+      </select>
     </div>
 
     <div class="form-group">

@@ -29,5 +29,5 @@ $routes->get('logout','Auth::logoutComplete');
 
 
 $routes->group('admin', ['filter' => 'auth'], static function ($routes) {
-    $routes->get('dash','MainController::catsPageAdmin');
+    $routes->get('dash','MainController::catsPage');
 });

@@ -1,6 +1,12 @@
 <?=$this->extend("layout/master");?>
 <?=$this->section("content");?>
 
+<?php
+    if ($adminCheck){
+        echo anchor('CatModel/new','Přidat',['class' => 'btn btn-secondary']);
+        echo anchor('CatModel/arrayList','Upravit',['class' => 'btn btn-info']);
+    }
+?>
 
 <div class='offset-1'>
 <div class='row pt-2'>
@@ -22,10 +28,10 @@ foreach($array as $row){
 }
 echo "</div></div>";
 
-/*echo "
-<div class='d-flex flex-column justify-content-center align-items-center'>
+
+echo "<div class='d-flex flex-column justify-content-center align-items-center'>
 <p class= text-center>".$pager->links()."</p>
-</div>";*/
+</div>";
 ?>
 
 <?=$this->endSection();?>
