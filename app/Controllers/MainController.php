@@ -25,7 +25,7 @@ class MainController extends BaseController
         $this->ionAuth = new IonAuth();
     }
 
-    /*MAIN PAGE + ADMIN PAGE*/
+    /*MAIN PAGE + SINGLE CAT PAGE*/
 
     function catsPage()
     {
@@ -37,6 +37,15 @@ class MainController extends BaseController
         $data['logged'] = $this->ionAuth->loggedIn();
         $data['adminCheck'] = $this->ionAuth->isAdmin();
         return view('CatPage',$data);
+    }
+
+    function catsSinglePage($id)
+    {
+        $data['array']= $this->kModel->join('ut_status','ut_status.id_status=ut_kocka.status','inner')->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->where('id_kocka', $id)->orderBy("id_kocka","asc")->findAll();
+        $data['title']="Naše Kočky";
+        $data['logged'] = $this->ionAuth->loggedIn();
+        $data['adminCheck'] = $this->ionAuth->isAdmin();
+        return view('CatSinglePage',$data);
     }
 
     /*CREATING*/
@@ -79,8 +88,8 @@ class MainController extends BaseController
     function showAll() {
         $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll();
         $data['title'] = "Seznam všech Koček";
-        echo view('CatArrayList', $data);
         $data['logged'] = $this->ionAuth->loggedIn();
+        echo view('CatArrayList', $data);
     }
 
     /*EDITING*/
