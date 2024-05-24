@@ -5,6 +5,11 @@
 helper('form');
 echo form_open('CatModel/edit');
 //var_dump($array);
+
+if($message != NULL) {
+  echo '<div class="bg-success">'.$message.
+  '</div>';
+}
 ?>
 
 <div class="container">

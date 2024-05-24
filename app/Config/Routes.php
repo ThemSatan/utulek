@@ -9,6 +9,8 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'MainController::catsPage');
 $routes->get('CatPage', 'MainController::catsPage');
+$routes->get('CatAdoptedPage', 'MainController::catsAdoptPage');
+$routes->get('CatUnavailablePage', 'MainController::catsUnavPage');
 $routes->get('CatPage/(:num)', 'MainController::catsSinglePage/$1');
 
 $routes->get('CatModel/new', 'MainController::addCat');

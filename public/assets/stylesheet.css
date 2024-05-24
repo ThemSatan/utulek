@@ -67,3 +67,20 @@ table{
 }
 
 /*-----*/
+
+/*NAVBAR DROPDOWN*/
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+.btn{
+  color: red;
+}
+
+/*-----*/

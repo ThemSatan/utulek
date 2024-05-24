@@ -62,7 +62,7 @@ class Auth extends BaseController
         } 
         
         else {
-            $this->session->setFlashdata('message','Tos lowkey posral');
+            $this->session->setFlashdata('message','Špatně zadané údaje, zkuste to znovu');
             return redirect()->to('login');
         }
     }

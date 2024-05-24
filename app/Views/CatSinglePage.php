@@ -18,10 +18,17 @@
                 echo "<h2 class='text-center'>".$row->jmeno."</h2>";
                 ?>
                 <hr>
-                <div class='card-body'>
+                <div class='card-body' >
                     <p>
                         <?php
-                        echo "<b>Status: </b>".$row->status."<br>
+                        echo "<b>Status: </b>";
+                        if ($row->status = '2') {
+                            echo anchor('AdoptionInfoPage/'.$row->id_kocka,$row->status);
+                        }
+                        else {
+                            echo $row->status;
+                        }
+                        echo "<br>
                         <hr>
                         <b>Pohlaví: </b>".$row->pohlavi."<br>
                         <b>Věk: </b>".$row->vek."<br>

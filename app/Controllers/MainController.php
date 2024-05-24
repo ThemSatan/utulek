@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\CatModel as kModel;
 use App\Models\BreedModel as pModel;
+use App\Models\FotoModel as fModel;
+use App\Models\OwnerModel as oModel;
 use Config\MyConfig as CModel;
 
 use App\Controllers\BaseController;
@@ -15,6 +17,8 @@ class MainController extends BaseController
     function __construct() {
         $this->kModel = new kModel();
         $this->pModel = new pModel();
+        $this->fModel = new fModel();
+        $this->oModel = new oModel();
         $this->config = new CModel();
     }
 
@@ -39,10 +43,37 @@ class MainController extends BaseController
         return view('CatPage',$data);
     }
 
+    function catsAdoptPage()
+    {
+        $perpage=$this->config->variable;
+        $config = new CModel();
+        $data['array']= $this->kModel->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['pager'] = $this->kModel->pager;
+        $data['title']="Naše Kočky";
+        $data['logged'] = $this->ionAuth->loggedIn();
+        $data['adminCheck'] = $this->ionAuth->isAdmin();
+        return view('CatAdoptedPage',$data);
+    }
+
+    function catsUnavPage()
+    {
+        $perpage=$this->config->variable;
+        $config = new CModel();
+        $data['array']= $this->kModel->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['pager'] = $this->kModel->pager;
+        $data['title']="Naše Kočky";
+        $data['status'] = $this->kModel->status;
+        $data['logged'] = $this->ionAuth->loggedIn();
+        $data['adminCheck'] = $this->ionAuth->isAdmin();
+        return view('CatUnavailablePage',$data);
+    }
+
     function catsSinglePage($id)
     {
         $data['array']= $this->kModel->join('ut_status','ut_status.id_status=ut_kocka.status','inner')->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->where('id_kocka', $id)->orderBy("id_kocka","asc")->findAll();
+        $data['list']= $this->oModel->join('ut_adopce','ut_adopce.majitel_id=ut_majitel.id_majitel','inner')->findAll();
         $data['title']="Naše Kočky";
+        $data['status'] = $this->kModel->status;
         $data['logged'] = $this->ionAuth->loggedIn();
         $data['adminCheck'] = $this->ionAuth->isAdmin();
         return view('CatSinglePage',$data);
@@ -51,8 +82,11 @@ class MainController extends BaseController
     /*CREATING*/
 
     function addCat() {
-        $data['array']= $this->kModel/*->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')*/->orderBy("id_kocka","asc")->findAll();
+        $data['array']= $this->kModel->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->orderBy("id_kocka","asc")->findAll();
         $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
+        $data['foto']= $this->fModel->orderBy("id_fotografie","asc")->findAll();
+        $data['message'] = $this->session->message;
+        $data['errorMessage'] = $this->session->errorMessage;
         $data['title'] = "Přidat kočku";
         $data['logged'] = $this->ionAuth->loggedIn();
         echo view('AddCat', $data);
@@ -64,6 +98,7 @@ class MainController extends BaseController
         $age = $this->request->getPost('vek');
         $weight = $this->request->getPost('vaha');
         $breed = $this->request->getPost('plemeno_id');
+        $foto = $this->request->getPost('fotografie');
         $gender = $this->request->getPost('pohlavi');
         $birth = $this->request->getPost('narozeni');
 
@@ -73,14 +108,32 @@ class MainController extends BaseController
             'vek' => $age,
             'vaha' => $weight,
             'plemeno_id' => $breed,
+            'fotografie' => $foto,
             'pohlavi' => $gender,
             'narozeni' => $birth
         );
 
 
+        if(isset($_POST['formSubmit']) ){
+            $status = $_POST['status'];
+            $name = $_POST['jmeno'];
+            $age = $_POST['vek'];
+            $weight = $_POST['vaha'];
+            $breed = $_POST['plemeno_id'];
+            $foto = $_POST['fotografie'];
+            $gender = $_POST['pohlavi'];
+            $birth = $_POST['narozeni'];
+        }
+
+        if(!isset($_POST['plemeno_id'])){
+            $this->session->setFlashdata('errorMessage','Došlo k chybě');
+        }
+
+
         $this->kModel->save($data);
        
-       return redirect()->route('CatPage');
+        $this->session->setFlashdata('message','Kočka byla úspěšně vytvořena');
+       return redirect()->route('CatModel/new');
     }
 
     /*SHOW ALL CATS PAGE*/
@@ -88,6 +141,7 @@ class MainController extends BaseController
     function showAll() {
         $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll();
         $data['title'] = "Seznam všech Koček";
+        $data['message'] = $this->session->message;
         $data['logged'] = $this->ionAuth->loggedIn();
         echo view('CatArrayList', $data);
     }
@@ -98,6 +152,7 @@ class MainController extends BaseController
         $data['array']= $this->kModel->where('id_kocka', $id)->orderBy("jmeno","asc")->findAll();
         $data['table']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
         $data['title']="Upravit";
+        $data['message'] = $this->session->message;
         $data['logged'] = $this->ionAuth->loggedIn();
         return view('EditCat',$data);
     }
@@ -127,7 +182,8 @@ class MainController extends BaseController
 
         $this->kModel->save($data);
 
-        return redirect()->route('CatPage');
+        $this->session->setFlashdata('message','Kočka byla úspěšně upravena');
+        return redirect()->route('CatModel/arrayList');
     }
 
     /*DELETION CONFIRMATION PAGE*/
@@ -135,6 +191,7 @@ class MainController extends BaseController
     function confirmDelete($id){
         $data['array']= $this->kModel->find($id);
         $data['title']="Potvrdit";
+        $data['message'] = $this->session->message;
         $data['logged'] = $this->ionAuth->loggedIn();
         return view('DeleteCat',$data);
     }
@@ -146,6 +203,7 @@ class MainController extends BaseController
         $return = $this->kModel->delete($id);
        
         //var_dump($return);
-        return redirect()->route('CatPage');
+        $this->session->setFlashdata('message','Kočka byla úspěšně odstraněna');
+        return redirect()->route('CatModel/arrayList');
     }
 }

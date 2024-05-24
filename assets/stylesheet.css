@@ -3,7 +3,7 @@
   font-style: normal;
 }
 
-/*DROPDOWN*/
+/*REGULAR DROPDOWN*/
 
 .dropbtn {
     border-radius: 10px;
@@ -64,6 +64,23 @@ table{
 .container{
   position: relative;
   margin-top: 50px;
+}
+
+/*-----*/
+
+/*NAVBAR DROPDOWN*/
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+.butn{
+  background-color: red;
 }
 
 /*-----*/

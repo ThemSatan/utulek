@@ -3,6 +3,11 @@
 
 
 <?php
+if($message != NULL) {
+    echo '<div class="bg-success">'.$message.
+    '</div>';
+  }
+
 echo "<table class='table table-hover table-dark row pt-2'>";
 
 foreach($array as $row){

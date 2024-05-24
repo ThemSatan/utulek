@@ -13,17 +13,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
+            <p style="color:white;">DOES IT FEEL GOOD</p>
+            <div class="dropdown">
+                <button data-mdb-button-init data-mdb-ripple-init data-mdb-dropdown-init class="dropbtn" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">Dropdown button</button>
+                <ul class="dropdown-content" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="<?=base_url('CatPage')?>">Naše Kočky</a></li>
+                    <li><a class="dropdown-item" href="<?=base_url('CatAdoptedPage')?>">Našli si domov</a></li>
+                    <li><a class="dropdown-item" href="<?=base_url('CatUnavailablePage')?>">Nedostupné kočky</a></li>
+                </ul>
+            </div>
+
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url('CatPage')?>">Naše Kočky</a>
                 </li>
                 <li class="nav-item">
                     <?php
-                    echo anchor('login','Přihlásit',['class' => 'btn btn-info']);
+                    if (!$logged){
+                        echo anchor('login','Přihlásit',['class' => 'btn btn-info']);
+                    }
                     ?>
                 </li>
                 <li class="nav-item">
                     <?php
-                    echo anchor('register','Registrovat',['class' => 'btn btn-success']);
+                    if (!$logged){
+                        echo anchor('register','Registrovat',['class' => 'btn btn-success']);
+                    }
                     ?>
                 </li>
                 <li class="nav-item">
@@ -34,9 +48,11 @@
                     ?>
                 </li>
             </ul>
+            
         </div>
     </div>
 </nav>
+
 
 </body>
 </html>
