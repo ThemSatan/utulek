@@ -22,7 +22,7 @@
                     <p>
                         <?php
                         echo "<b>Status: </b>";
-                        if ($row->status = '2') {
+                        if ($row->status == 'adoptovaná') {
                             echo anchor('AdoptionInfoPage/'.$row->id_kocka,$row->status);
                         }
                         else {

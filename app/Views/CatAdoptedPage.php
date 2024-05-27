@@ -28,13 +28,14 @@ if ($result->num_rows > 0) {
     <div class='card border-primary mb-3' style='max-width: 300px; margin: 10px; background-color: #eff0f5;'>
         <div class='card-header'>
             <img style='height:150px;max-width:200px; display: block; margin-left: auto;margin-right: auto;' src='".base_url('public/assets/kocky/')."/".$row["fotografie"]. "'>".
-            "<h3>".anchor('CatPage/'.$row["id_kocka"],$row["jmeno"]). "</h3>".
-        "</div>
+            "<h3>".anchor('CatPage/'.$row["id_kocka"],$row["jmeno"]). "</h3>"
+        ."</div>
     </div>";
   }
 } else {
   echo "0 results";
 }
+
 
 $conn->close();
 

@@ -12,6 +12,8 @@
 <div class='row pt-2'>
     <?php 
 
+
+
 foreach($array as $row){
 
 ?>

@@ -17,6 +17,7 @@ if($errorMessage != NULL) {
 }
 ?>
 
+<form action="UploadFile.php" method="post" enctype="multipart/form-data" action="/create">
 
 <div class="container">
             <div class="row">
@@ -53,22 +54,31 @@ if($errorMessage != NULL) {
     <!--<form action="ActionPage.php" method="post">-->
 
     <div class="form-group">
-      <label for="inputUrl" class="form-label mt-4">Plemeno</label>
-      <input type="hidden" name="id" value=""/>
+      <label for="inputBreed" class="form-label mt-4">Plemeno</label>
+      <input type="hidden" name="id" value="plemeno_id"/>
       <select required='required' id="inputBreed" name="plemeno" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
         <option value="">Vyberte plemeno</option>
       <?php
-        /**$dropdown_query = "SELECT * FROM course";
-        $breeds = mysqli_query($con, $dropdown_query);
-      
-        echo '<select name="plemeno">';
-            while ($breed = mysqli_fetch_array($breeds)) {
-                echo "<option value='{$breed['plemeno_id']}'".($breedId['id_plemeno']==$breed['plemeno_id'] ? ' selected="selected"' : '').">{$breed['nazev']}</option>";
-            } // while
-        echo '</select>';**/
         foreach($array as $row){
-          echo "<option value='".$row->plemeno_id."'>".$row->id_plemeno."</option>";
+          echo "<option value='".$row->plemeno_id."'>".$row->plemeno_id."</option>";
         }
+
+        /**$conn = new mysqli('localhost', 'root', '', 'adamkova');
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT ut_plemeno.id_plemeno, ut_plemeno.nazev, ut_kocka.plemeno_id
+        FROM ut_plemeno ut_plemeno
+        LEFT JOIN ut_kocka ut_kocka ON ut_plemeno.id_plemeno = ut_kocka.plemeno_id
+        ORDER BY ut_plemeno.id_plemeno ASC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            echo "<option value='".$row["plemeno_id"]."'>".$row["id_plemeno"]." ".$row["nazev"]."</option>";
+          }
+        }**/
       ?>
       </select>
     </div>
@@ -84,13 +94,13 @@ if($errorMessage != NULL) {
     </div>
 
     <div class="form-group">
-      <form action="UploadFile.php" method="post" enctype="multipart/form-data">
         <label for="inputName" class="form-label mt-4">Profilový obrázek kočky</label>
-        <input type="file" class="form-control" id="inputBD" aria-describedby="input" name="fotografie">
-      </form>
+        <input type="file" class="form-control" id="inputFoto" aria-describedby="input" name="fotografie">
     </div>
 
     <input class="btn btn-success" type="submit" value="Potvrdit" id="flexCheckDefault" style="margin-top: 10px">
+
+    </form>
 
   </div>
   <div class="col-3"></div>

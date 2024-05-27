@@ -47,7 +47,7 @@ class MainController extends BaseController
     {
         $perpage=$this->config->variable;
         $config = new CModel();
-        $data['array']= $this->kModel->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['array']= $this->kModel->join('ut_adopce','ut_adopce.kocka_id=ut_kocka.id_kocka','inner')->join('ut_majitel','ut_adopce.majitel_id=ut_majitel.id_majitel','inner')->orderBy("id_kocka","asc")->paginate($perpage);
         $data['pager'] = $this->kModel->pager;
         $data['title']="Naše Kočky";
         $data['logged'] = $this->ionAuth->loggedIn();
@@ -73,7 +73,7 @@ class MainController extends BaseController
         $data['array']= $this->kModel->join('ut_status','ut_status.id_status=ut_kocka.status','inner')->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->where('id_kocka', $id)->orderBy("id_kocka","asc")->findAll();
         $data['list']= $this->oModel->join('ut_adopce','ut_adopce.majitel_id=ut_majitel.id_majitel','inner')->findAll();
         $data['title']="Naše Kočky";
-        $data['status'] = $this->kModel->status;
+        $data['statusNumber'] = $this->kModel->status;
         $data['logged'] = $this->ionAuth->loggedIn();
         $data['adminCheck'] = $this->ionAuth->isAdmin();
         return view('CatSinglePage',$data);
@@ -84,7 +84,6 @@ class MainController extends BaseController
     function addCat() {
         $data['array']= $this->kModel->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->orderBy("id_kocka","asc")->findAll();
         $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
-        $data['foto']= $this->fModel->orderBy("id_fotografie","asc")->findAll();
         $data['message'] = $this->session->message;
         $data['errorMessage'] = $this->session->errorMessage;
         $data['title'] = "Přidat kočku";
