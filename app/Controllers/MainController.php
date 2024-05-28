@@ -82,7 +82,7 @@ class MainController extends BaseController
     /*CREATING*/
 
     function addCat() {
-        $data['array']= $this->kModel->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->orderBy("id_kocka","asc")->findAll();
+        $data['array']= $this->kModel->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->orderBy("id_plemeno","asc")->findAll();
         $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
         $data['message'] = $this->session->message;
         $data['errorMessage'] = $this->session->errorMessage;
@@ -96,7 +96,7 @@ class MainController extends BaseController
         $name = $this->request->getPost('jmeno');
         $age = $this->request->getPost('vek');
         $weight = $this->request->getPost('vaha');
-        $breed = $this->request->getPost('plemeno_id');
+        $breed = $this->request->getPost('plemeno');
         $foto = $this->request->getPost('fotografie');
         $gender = $this->request->getPost('pohlavi');
         $birth = $this->request->getPost('narozeni');
@@ -123,11 +123,6 @@ class MainController extends BaseController
             $gender = $_POST['pohlavi'];
             $birth = $_POST['narozeni'];
         }
-
-        if(!isset($_POST['plemeno_id'])){
-            $this->session->setFlashdata('errorMessage','Došlo k chybě');
-        }
-
 
         $this->kModel->save($data);
        

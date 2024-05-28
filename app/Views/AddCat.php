@@ -51,34 +51,15 @@ if($errorMessage != NULL) {
       <input required="required" type="number" min="0.1" max="7" step="0.1" class="form-control" id="inputWeight" aria-describedby="input" placeholder="Sem váha kočky, např.:" name="vaha">
     </div>
 
-    <!--<form action="ActionPage.php" method="post">-->
-
     <div class="form-group">
       <label for="inputBreed" class="form-label mt-4">Plemeno</label>
       <input type="hidden" name="id" value="plemeno_id"/>
       <select required='required' id="inputBreed" name="plemeno" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
         <option value="">Vyberte plemeno</option>
       <?php
-        foreach($array as $row){
-          echo "<option value='".$row->plemeno_id."'>".$row->plemeno_id."</option>";
+        foreach($list as $row){
+          echo "<option value='".$row->id_plemeno."'>".$row->id_plemeno." ".$row->nazev."</option>";
         }
-
-        /**$conn = new mysqli('localhost', 'root', '', 'adamkova');
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT ut_plemeno.id_plemeno, ut_plemeno.nazev, ut_kocka.plemeno_id
-        FROM ut_plemeno ut_plemeno
-        LEFT JOIN ut_kocka ut_kocka ON ut_plemeno.id_plemeno = ut_kocka.plemeno_id
-        ORDER BY ut_plemeno.id_plemeno ASC";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-            echo "<option value='".$row["plemeno_id"]."'>".$row["id_plemeno"]." ".$row["nazev"]."</option>";
-          }
-        }**/
       ?>
       </select>
     </div>
