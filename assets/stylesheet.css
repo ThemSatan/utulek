@@ -3,14 +3,20 @@
   font-style: normal;
 }
 
+.bg{
+  background-image: url(test/test.jpg);
+  background-color: black;
+
+}
+
 /*REGULAR DROPDOWN*/
 
 .dropbtn {
     border-radius: 10px;
-    background-color: #666469;
-    color: white;
+    background-color: red;
+    color: black;
     padding: 5px;
-    font-size: 16px;
+    font-size: 30px;
     border: none;
     cursor: pointer;
     max-width: 100%;
@@ -68,19 +74,26 @@ table{
 
 /*-----*/
 
-/*NAVBAR DROPDOWN*/
+/*NAVBAR*/
 
-.dropdown:hover>.dropdown-menu {
+.bg-dark {
+  background-color: #ffffff!important;
+}
+
+  /*DROPDOWN*/
+  .dropbtn{
+    background-color: red;
+  }
+
+  .dropdown:hover>.dropdown-menu {
   display: block;
-}
+  }
 
-.dropdown>.dropdown-toggle:active {
-  /*Without this, clicking will make it sticky*/
+  .dropdown>.dropdown-toggle:active {
     pointer-events: none;
-}
+  }
+  /*-----*/
 
-.butn{
-  background-color: red;
-}
+
 
 /*-----*/

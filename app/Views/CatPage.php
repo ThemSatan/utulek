@@ -1,6 +1,6 @@
 <?=$this->extend("layout/master");?>
 <?=$this->section("content");?>
-
+<div class="bg">
 <?php
     if ($adminCheck){
         echo anchor('CatModel/new','Přidat',['class' => 'btn btn-secondary']);
@@ -36,5 +36,6 @@ echo "<div class='d-flex flex-column justify-content-center align-items-center'>
 <p class= text-center>".$pager->links()."</p>
 </div>";
 ?>
+</div>
 
 <?=$this->endSection();?>
