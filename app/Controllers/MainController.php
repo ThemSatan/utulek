@@ -6,6 +6,7 @@ use App\Models\CatModel as kModel;
 use App\Models\BreedModel as pModel;
 use App\Models\FotoModel as fModel;
 use App\Models\OwnerModel as oModel;
+use App\Models\StatusModel as sModel;
 use Config\MyConfig as CModel;
 
 use App\Controllers\BaseController;
@@ -19,6 +20,7 @@ class MainController extends BaseController
         $this->pModel = new pModel();
         $this->fModel = new fModel();
         $this->oModel = new oModel();
+        $this->sModel = new sModel();
         $this->config = new CModel();
     }
 
@@ -84,12 +86,24 @@ class MainController extends BaseController
     function addCat() {
         $data['array']= $this->kModel->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->orderBy("id_plemeno","asc")->findAll();
         $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
+        $data['statusArray']= $this->sModel->orderBy("id_status","asc")->findAll();
         $data['message'] = $this->session->message;
-        $data['errorMessage'] = $this->session->errorMessage;
         $data['title'] = "Přidat kočku";
         $data['logged'] = $this->ionAuth->loggedIn();
         echo view('AddCat', $data);
     }
+
+    /**public function create(){
+        $kockaModel = new KModel();
+    
+        $obrazek = $this->request->getFile('obrazek');
+        $kockaModel->insert([ 
+            'obrazek' => $_FILES["obrazek"]["name"]
+        ]);
+        $destination_folder = 'assets/images/sampionaty/';
+        $target_file = $destination_folder . basename($_FILES["obrazek"]["name"]);
+        move_uploaded_file($_FILES['obrazek']['tmp_name'], $target_file);
+        return redirect()->to(base_url('CatModel/new'));**/
     
     function createForm() {
         $status = $this->request->getPost('status');
@@ -97,7 +111,7 @@ class MainController extends BaseController
         $age = $this->request->getPost('vek');
         $weight = $this->request->getPost('vaha');
         $breed = $this->request->getPost('plemeno');
-        $foto = $this->request->getPost('fotografie');
+        $fotografie = $this->request->getFile('fotografie');
         $gender = $this->request->getPost('pohlavi');
         $birth = $this->request->getPost('narozeni');
 
@@ -107,23 +121,14 @@ class MainController extends BaseController
             'vek' => $age,
             'vaha' => $weight,
             'plemeno_id' => $breed,
-            'fotografie' => $foto,
+            'fotografie' =>  var_dump($_FILES),
             'pohlavi' => $gender,
             'narozeni' => $birth
         );
 
-
-        if(isset($_POST['formSubmit']) ){
-            $status = $_POST['status'];
-            $name = $_POST['jmeno'];
-            $age = $_POST['vek'];
-            $weight = $_POST['vaha'];
-            $breed = $_POST['plemeno_id'];
-            $foto = $_POST['fotografie'];
-            $gender = $_POST['pohlavi'];
-            $birth = $_POST['narozeni'];
-        }
-
+        $destination_folder = 'public/assets/kocky';
+        $target_file = $destination_folder . basename(var_dump($_FILES));
+        move_uploaded_file(var_dump($_FILES), $target_file);
         $this->kModel->save($data);
        
         $this->session->setFlashdata('message','Kočka byla úspěšně vytvořena');
