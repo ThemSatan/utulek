@@ -144,7 +144,7 @@ class MainController extends BaseController
 
     function editCat($id) {
         $data['array']= $this->kModel->where('id_kocka', $id)->orderBy("jmeno","asc")->findAll();
-        $data['table']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
+        $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
         $data['title']="Upravit";
         $data['message'] = $this->session->message;
         $data['logged'] = $this->ionAuth->loggedIn();

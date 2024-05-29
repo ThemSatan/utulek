@@ -3,8 +3,8 @@
 
 <?php
     if ($adminCheck){
-        echo anchor('CatModel/new','Přidat',['class' => 'btn btn-secondary']);
-        echo anchor('CatModel/arrayList','Upravit',['class' => 'btn btn-info']);
+      echo anchor('CatModel/new','Přidat',['class' => 'btn edit']).
+      anchor('CatModel/arrayList','Upravit',['class' => 'btn edit']);
     }
 ?>
 
@@ -25,11 +25,13 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     echo "<br>
-    <div class='card border-primary mb-3' style='max-width: 300px; margin: 10px; background-color: #eff0f5;'>
-        <div class='card-header'>
-            <img style='height:150px;max-width:200px; display: block; margin-left: auto;margin-right: auto;' src='".base_url('public/assets/kocky/')."/".$row["fotografie"]. "'>".
-            "<h3>".anchor('CatPage/'.$row["id_kocka"],$row["jmeno"]). "</h3>"
-        ."</div>
+    <div class='card mb-3''>
+      <div class='text-center'>
+        <div class='container'>
+            <a href='CatPage/".$row["id_kocka"]."'><img class='profiles' src='".base_url('public/assets/kocky/')."/".$row["fotografie"]. "'></a>".
+            "<h3>".anchor('CatPage/'.$row["id_kocka"],$row["jmeno"],['class' => 'center']). "</h3>".
+        "</div>
+      </div>
     </div>";
   }
 } else {

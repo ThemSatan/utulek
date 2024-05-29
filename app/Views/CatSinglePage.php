@@ -10,18 +10,18 @@
         ?>
         
             <?php
-            echo "<img class='mx-auto image-thumbnail' style='max-width:500px;  max-height:600px;  display: block; padding-bottom: 20px;' src='".base_url('public/assets/kocky/')."/".$row->fotografie. "'>";
+            echo "<img class='profile-image mx-auto' src='".base_url('public/assets/kocky/')."/".$row->fotografie. "'>";
             ?>
 
-            <div class='card border-primary mb-3 mx-auto' style='height:auto; width: 500px; padding-left: 20px; padding-right: 20px; padding-top: 20px; background-color: #eff0f5;'>
+            <div class='card-profile mx-auto'>
                 <?php
-                echo "<h2 class='text-center'>".$row->jmeno."</h2>";
+                echo "<h2 class='text-center text-uppercase cat-name-title'>".$row->jmeno."</h2>";
                 ?>
                 <hr>
-                <div class='card-body' >
+                <div class='container' >
                     <p>
                         <?php
-                        echo "<b>Status: </b>";
+                        echo "<b class='titles'>Status: </b>";
                         if ($row->status == [2]) {
                             echo anchor('AdoptionInfoPage/'.$row->id_kocka,$row->status);
                         }
@@ -30,13 +30,13 @@
                         }
                         echo "<br>
                         <hr>
-                        <b>Pohlaví: </b>".$row->pohlavi."<br>
-                        <b>Věk: </b>".$row->vek."<br>
-                        <b>Datum narození: </b>".$row->narozeni."<br>
-                        <b>Váha: </b>".$row->vaha."<br>
-                        <b>Plemeno: </b>".$row->nazev."<br>
+                        <b class='titles'>Pohlaví: </b>".$row->pohlavi."<br>
+                        <b class='titles'>Věk: </b>".$row->vek."<br>
+                        <b class='titles'>Datum narození: </b>".$row->narozeni."<br>
+                        <b class='titles'>Váha: </b>".$row->vaha."<br>
+                        <b class='titles'>Plemeno: </b>".$row->nazev."<br>
                         <hr>
-                        <b>Popis: </b>".$row->popis."<br>
+                        <b class='titles'>Popis:<br> </b>".$row->popis."<br>
                         ";
                         ?>
                     </p>

@@ -11,10 +11,6 @@ if($message != NULL) {
   '</div>';
 }
 
-if($errorMessage != NULL) {
-  echo '<div class="bg-danger">'.$errorMessage.
-  '</div>';
-}
 ?>
 
 <form action="UploadFile.php" method="post" enctype="multipart/form-data" action="/create">

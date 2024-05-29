@@ -64,34 +64,19 @@ if($message != NULL) {
     </div>
 
     <div class="form-group">
-      <label for="inputUrl" class="form-label mt-4">Plemeno</label>
-      <input type="number" min="1" max="70" class="form-control" id="inputBreed" placeholder="
+      <label for="inputBreed" class="form-label mt-4">Plemeno</label>
+      <input type="hidden" name="id" value="plemeno_id"/>
+      <select required='required' id="inputBreed" name="plemeno" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
+        <option value=""><?=$array[0]->plemeno_id?></option>
       <?php
-      echo $array[0]->plemeno_id;
+        foreach($list as $row){
+          echo "<option value='".$row->id_plemeno."'>".$row->id_plemeno." ".$row->nazev."</option>";
+        }
       ?>
-      " name="plemeno_id">
+      </select>
     </div>
-    <div class="dropdown">
-        <button class="dropbtn">**Tabulka</button>
-        <div class="dropdown-content">
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Plemeno</th>
-                </tr>
-                <?php
-                    foreach($table as $row){
-                        echo "<tr>
-                
-                        <td>".$row->id_plemeno."</td>
-                        <td>".$row->nazev."</td>
-                        
-                        </tr>";
-                    }
-                ?>
-            </table>
-        </div>
-    </div>
+
+    
 
     <div class="form-group">
       <label for="inputName" class="form-label mt-4">Pohlaví</label>
