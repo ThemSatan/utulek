@@ -3,7 +3,7 @@
 
 <?php
 if($message != NULL) {
-  echo '<div class="bg-success">'.$message.
+  echo '<div class="pop-up bg-success">'.$message.
   '</div>';
 }
 
@@ -11,20 +11,14 @@ if($message != NULL) {
 
 <form action="create" method="post" enctype="multipart/form-data">
 
-<div class="container">
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6"><h1><i class="fa-solid fa-arrows-rotate fa-pulse"></i> Přidat kočku</h1></div>
-                <div class="col-3"></div>
-            </div>
+<div class="text-center">
+  <h1 class="text-uppercase form-title"><i class="fa-solid fa-arrows-rotate fa-pulse"></i> Přidat kočku</h1>
 </div>
-<div class="row">
-  <div class="col-3"></div>
-  <div class="col-6">
+
 
     
     <div class="form-group">
-      <label for="inputStatus" class="form-label mt-4">Status</label>
+      <label for="inputStatus" class="form-label mt-4 titles">Status</label>
       <input type="hidden" name="id" value="status"/>
       <select required='required' id="inputStatus" name="status" class="form-control" aria-describedby="input" placeholder="Vyberte status">
         <option value="">Vyberte status</option>
@@ -32,25 +26,17 @@ if($message != NULL) {
         <option value="2">Nedostupná</option>
         <option value="1">Dostupná</option>
       </select>
-    </div>
-
-    <div class="form-group">
-      <label for="inputUrl" class="form-label mt-4">Jméno</label>
+   
+      <label for="inputUrl" class="form-label mt-4 titles">Jméno</label>
       <input required="required" type="text" class="form-control" id="inputName" placeholder="Sem jméno kočky" name="jmeno">
-    </div>
-
-    <div class="form-group">
-      <label for="inputName" class="form-label mt-4">Věk</label>
+    
+      <label for="inputName" class="form-label mt-4 titles">Věk</label>
       <input required="required" type="number" min="1" max="18" class="form-control" id="inputAge" aria-describedby="input" placeholder="Sem věk v letech, např.: 10" name="vek">
-    </div>
-
-    <div class="form-group">
-      <label for="inputName" class="form-label mt-4">Váha</label>
-      <input required="required" type="number" min="0.1" max="7" step="0.1" class="form-control" id="inputWeight" aria-describedby="input" placeholder="Sem váha kočky, např.:" name="vaha">
-    </div>
-
-    <div class="form-group">
-      <label for="inputBreed" class="form-label mt-4">Plemeno</label>
+    
+      <label for="inputName" class="form-label mt-4 titles">Váha</label>
+      <input required="required" type="number" min="0.1" max="7" step="0.1" class="form-control" id="inputWeight" aria-describedby="input" placeholder="Sem váha kočky, např.: 5.2" name="vaha">
+    
+      <label for="inputBreed" class="form-label mt-4 titles">Plemeno</label>
       <input type="hidden" name="id" value="plemeno_id"/>
       <select required='required' id="inputBreed" name="plemeno" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
         <option value="">Vyberte plemeno</option>
@@ -60,10 +46,8 @@ if($message != NULL) {
         }
       ?>
       </select>
-    </div>
-
-    <div class="form-group">
-      <label for="inputGender" class="form-label mt-4">Pohlaví</label>
+    
+      <label for="inputGender" class="form-label mt-4 titles">Pohlaví</label>
       <input type="hidden" name="id" value="pohlavi"/>
       <select required='required' id="inputGender" name="pohlavi" class="form-control" aria-describedby="input" placeholder="Vyberte pohlaví">
         <option value="">Vyberte pohlaví</option>
@@ -71,29 +55,18 @@ if($message != NULL) {
         <option value="Kocour">Kocour</option>
       
       </select>
-    </div>
-
-    <div class="form-group">
-      <label for="inputName" class="form-label mt-4">Datum narození</label>
+    
+      <label for="inputName" class="form-label mt-4 titles">Datum narození</label>
       <input required="required" type="text" class="form-control" id="inputBD" aria-describedby="input" placeholder="Sem datum narození kočky, formát: dd.mm.rrrr" name="narozeni">
+    
+      <label for="inputDesc" class="form-label mt-4 titles">Popis</label>
+      <input required='required' type="text" class="form-control" id="inputDesc" aria-describedby="input" placeholder="Sem napište popis" name="popis">
+    
+      <label for="inputFoto" class="form-label mt-4 titles">Profilový obrázek kočky</label>
+      <input type="file" class="form-control" id="inputFoto" aria-describedby="input" name="fotografie">
     </div>
 
-    <div class="form-group">
-      <label for="inputDesc" class="form-label mt-4">Popis</label>
-      <input type="text" class="form-control" id="inputDesc" aria-describedby="input" placeholder="Sem napište popis (není povinné)" name="popis">
-    </div>
-
-    <div class="form-group">
-        <label for="inputFoto" class="form-label mt-4">Profilový obrázek kočky</label>
-        <input type="file" class="form-control" id="inputFoto" aria-describedby="input" name="fotografie">
-    </div>
-
-    <input class="btn btn-success" type="submit" value="Potvrdit" id="flexCheckDefault" style="margin-top: 10px">
-
+    <input class="btn submit mt-4" type="submit" value="Potvrdit" id="flexCheckDefault">
     </form>
-
-  </div>
-  <div class="col-3"></div>
-</div>
 
 <?=$this->endSection();?>

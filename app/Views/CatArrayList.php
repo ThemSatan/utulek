@@ -8,26 +8,29 @@ if($message != NULL) {
     '</div>';
   }
 
-echo "<table class='table table-hover table-dark row pt-2'>";
+echo "<table class='table table-hover table-dark pt-2 mx-auto'>
+<tbody>";
+
 
 foreach($array as $row){
 
-echo "
-    <tbody>
-        <tr>
+echo "<tr>
             <td>".$row->id_kocka."</td>
             <td>".$row->jmeno."</td>
-            <td>".$row->status."</td>";
-            //var_dump($radek);
-echo        "<td>".anchor('CatModel/edit/'.$row->id_kocka,'Upravit',['class' => 'btn btn-info']).
-"</td>
-<td>".anchor('CatModel/delete/'.$row->id_kocka,'Smazat',['class' => 'btn btn-danger']).
-"</td>
-        </tr>
-    </tbody>";
+            <td>".$row->status."</td>
+            <td>".$row->vek."</td>
+            <td>".$row->vaha."</td>
+            <td>".$row->plemeno_id."</td>
+            <td>".$row->popis."</td>
+            <td>".$row->pohlavi."</td>
+            <td>".$row->narozeni."</td></tr>";
+            echo  anchor('CatModel/edit/'.$row->id_kocka,'Upravit',['class' => 'btn btn-info']).
+                anchor('CatModel/delete/'.$row->id_kocka,'Smazat',['class' => 'btn btn-danger']);
+
 }
 
-echo "</table>";
+echo "</tbody>
+</table>";
 
 ?>
 

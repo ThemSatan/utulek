@@ -18,7 +18,7 @@
   width: 100%;
   height: auto;
   min-height: 100%;
-  min-width: 1024px;
+  
 }
 
 /*-----*/
@@ -57,6 +57,18 @@
   transition: 0.3s;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.submit{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit:hover{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .edit{
@@ -131,6 +143,7 @@ table{
   transition: 0.3s;
 }
 
+
 .profile-image{
   width:500px;
   height:500px;
@@ -140,6 +153,7 @@ table{
   border-style: solid;
   border-color: black;
   border-width: 10px;
+  margin-bottom: 20px;
 }
 
  /*CARDS*/
@@ -160,6 +174,7 @@ table{
     border-style: solid;
     border-color: #271b18;
     border-width: 10px;
+    margin-bottom: 20px;
   }
 
   .cat-name-title{
@@ -297,7 +312,214 @@ table{
   }
 
   /*-----*/
+/*-----*/
 
+/*PAGER*/
 
+.pagination>li>a {
+  background-color: #62442e;
+  border-color: #dd7b5f00;
+  color: #fae5cf;
+  transition: 0.3s;
+}
+
+.pagination>.disabled>a,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>a:focus {
+  background-color: #4c362a;
+  border-color: #a7665a00;
+  color: #dad0cc;
+  transition: 0.3s;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:hover,
+.pagination>.active>a:focus,
+.pagination>li>a:hover,
+.pagination>li>a:focus {
+  background-color: #997d56;
+  border-color: #f3b98e00;
+  color: #faf9f3;
+  transition: 0.3s;
+}
+
+/*-----*/
+
+/*GROUPS AND TITLES*/
+
+.form-title{
+  color:#30120b;
+  text-shadow:0 4px 0 white;
+  padding-top: 20px;
+}
+
+.login-title{
+  color:#30120b;
+  text-shadow:0 4px 0 white;
+  padding-top: 150px;
+}
+
+.register-title{
+  color:#30120b;
+  text-shadow:0 4px 0 white;
+  padding-top: 60px;
+}
+
+.form-group{
+  width:750px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-group{
+  width:500px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: auto;
+}
+
+@media (max-width: 520px){
+  .login-group{
+    width:350px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+  }
+}
+
+.register-group{
+  width:500px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: auto;
+}
+
+@media (max-width: 520px){
+  .register-group{
+    width:350px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+    transition: 0.3s;
+  }
+}
+
+.profiles-group{
+  width:1300px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: auto;
+}
+
+@media (max-width: 1350px){
+  .profiles-group{
+    width:1000px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 960px){
+  .profiles-group{
+    width:800px;
+    height: auto;
+    display: block;
+    margin-left: 150px;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 780px){
+  .profiles-group{
+    width:800px;
+    height: auto;
+    display: block;
+    margin-left: 50px;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 680px){
+  .profiles-group{
+    width:500px;
+    height: auto;
+    display: block;
+    margin-left: 150px;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 500px){
+  .profiles-group{
+    width:500px;
+    height: auto;
+    display: block;
+    margin-left: 70px;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+    transition: 0.3s;
+  }
+}
+
+/*-----*/
+
+/*POP-UP MESSAGES*/
+
+.pop-up{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:400px;
+  text-align: center;
+  margin-top: 10px;
+  color: #fae5cf;
+  border-radius: 10px;
+  padding-top: 10px;
+}
+
+.pop-up-delete{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:400px;
+  text-align: center;
+  margin-top: 10px;
+  color: #fae5cf;
+  border-radius: 10px;
+  padding-top: 10px;
+  margin-top: 120px;
+}
 
 /*-----*/

@@ -8,7 +8,7 @@
     }
 ?>
 
-<div class='offset-1'>
+<div class='offset-1 profiles-group'>
 <div class='row pt-2'>
     <?php 
 
@@ -17,7 +17,7 @@
 foreach($array as $row){
 
 ?>
-    <br><div class='card mb-3'>
+    <br><div class='card'>
         <div class='text-center'>
             <?php
                 echo "<div class='container'>

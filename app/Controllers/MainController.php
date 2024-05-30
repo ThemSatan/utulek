@@ -110,8 +110,7 @@ class MainController extends BaseController
 
                 $fotografie->move('public/assets/kocky', $newFileName);
             } else {
-                $this->session->setFlashdata('error', 'File upload failed.');
-                return redirect()->back()->withInput();
+                $newFileName = 'default.png';
             }
 
             $data = array(
@@ -145,7 +144,7 @@ class MainController extends BaseController
     /*EDITING*/
 
     function editCat($id) {
-        $data['array']= $this->kModel->where('id_kocka', $id)->orderBy("jmeno","asc")->findAll();
+        $data['array']= $this->kModel->where('id_kocka', $id)->findAll();
         $data['list']= $this->pModel->orderBy("id_plemeno","asc")->findAll();
         $data['title']="Upravit";
         $data['message'] = $this->session->message;
@@ -166,6 +165,18 @@ class MainController extends BaseController
         $gender = $this->request->getPost('pohlavi');
         $birth = $this->request->getPost('narozeni');
 
+        if ($fotografie->isValid() && !$fotografie->hasMoved()) {
+            /**$newFileName = substr($fotografie->getRandomName('alnum', 10), -10);
+
+
+            $fotografie->move('public/assets/kocky', $newFileName);
+            $request->file('fotografie')->move(public_path('public/assets/kocky'), $request->file('fotografie')->getClientOriginalName());
+
+            $product->image = 'public/assets/kocky' . $request->file('fotografie')->getClientOriginalName();/** */
+        } else {
+            $newFileName = 'default.png';
+        }
+
         $data = array(
             'id_kocka' => $this->request->getPost('id_kocka'),
             'status' => $this->request->getPost('status'),
@@ -179,6 +190,7 @@ class MainController extends BaseController
             'narozeni' => $this->request->getPost('narozeni')
 
         );
+        
 
         $this->kModel->save($data);
 

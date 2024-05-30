@@ -1,16 +1,17 @@
 <?php
 
 echo $this->extend('layout/master');
-
 echo $this->section('content');
 
 echo form_open('register-complete');
 
 echo '
-<div class="col-4 offset-2">
-    ';
 
-echo '
+<div class="text-center">
+  <h1 class="text-uppercase register-title"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Registrace</h1>
+</div>
+
+<div class="register-group">
     <div class="form-floating mb-3 mt-3">
         <input type="text" class="form-control" id="user" placeholder="Enter username" name="user">
         <label for="text">Username</label>
@@ -41,7 +42,7 @@ echo '
         <label for="pwd">Password again</label>
     </div>
 
-    <button type="submit" class="btn btn-secondary">Registrace</button>
+    <button type="submit" class="btn submit">Registrace</button>
 </div>';
 
 
