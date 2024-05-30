@@ -31,7 +31,7 @@ class MainController extends BaseController
         $this->ionAuth = new IonAuth();
     }
 
-    /*MAIN PAGE + SINGLE CAT PAGE*/
+    /*MAIN PAGES + CAT PAGE PROFILE*/
 
     function catsPage()
     {
@@ -92,48 +92,45 @@ class MainController extends BaseController
         $data['logged'] = $this->ionAuth->loggedIn();
         echo view('AddCat', $data);
     }
-
-    /**public function create(){
-        $kockaModel = new KModel();
-    
-        $obrazek = $this->request->getFile('obrazek');
-        $kockaModel->insert([ 
-            'obrazek' => $_FILES["obrazek"]["name"]
-        ]);
-        $destination_folder = 'assets/images/sampionaty/';
-        $target_file = $destination_folder . basename($_FILES["obrazek"]["name"]);
-        move_uploaded_file($_FILES['obrazek']['tmp_name'], $target_file);
-        return redirect()->to(base_url('CatModel/new'));**/
     
     function createForm() {
         $status = $this->request->getPost('status');
-        $name = $this->request->getPost('jmeno');
-        $age = $this->request->getPost('vek');
-        $weight = $this->request->getPost('vaha');
-        $breed = $this->request->getPost('plemeno');
-        $fotografie = $this->request->getFile('fotografie');
-        $gender = $this->request->getPost('pohlavi');
-        $birth = $this->request->getPost('narozeni');
+            $name = $this->request->getPost('jmeno');
+            $age = $this->request->getPost('vek');
+            $weight = $this->request->getPost('vaha');
+            $breed = $this->request->getPost('plemeno');
+            $fotografie = $this->request->getFile('fotografie');
+            $description = $this->request->getPost('popis');
+            $gender = $this->request->getPost('pohlavi');
+            $birth = $this->request->getPost('narozeni');
 
-        $data = array(
-            'status' => $status,
-            'jmeno' => $name,
-            'vek' => $age,
-            'vaha' => $weight,
-            'plemeno_id' => $breed,
-            'fotografie' =>  var_dump($_FILES),
-            'pohlavi' => $gender,
-            'narozeni' => $birth
-        );
+            if ($fotografie->isValid() && !$fotografie->hasMoved()) {
+                $newFileName = substr($fotografie->getRandomName('alnum', 10), -10);
 
-        $destination_folder = 'public/assets/kocky';
-        $target_file = $destination_folder . basename(var_dump($_FILES));
-        move_uploaded_file(var_dump($_FILES), $target_file);
-        $this->kModel->save($data);
-       
-        $this->session->setFlashdata('message','Kočka byla úspěšně vytvořena');
-       return redirect()->route('CatModel/new');
-    }
+
+                $fotografie->move('public/assets/kocky', $newFileName);
+            } else {
+                $this->session->setFlashdata('error', 'File upload failed.');
+                return redirect()->back()->withInput();
+            }
+
+            $data = array(
+                'status' => $status,
+                'jmeno' => $name,
+                'vek' => $age,
+                'vaha' => $weight,
+                'plemeno_id' => $breed,
+                'fotografie' => $newFileName,
+                'popis' => $description,
+                'pohlavi' => $gender,
+                'narozeni' => $birth
+            );
+
+            $this->kModel->save($data);
+
+            $this->session->setFlashdata('message', 'Kočka byla úspěšně vytvořena');
+            return redirect()->route('CatModel/new');
+        }
 
     /*SHOW ALL CATS PAGE*/
 
@@ -164,6 +161,8 @@ class MainController extends BaseController
         $age = $this->request->getPost('vek');
         $weight = $this->request->getPost('vaha');
         $breed = $this->request->getPost('plemeno_id');
+        $fotografie = $this->request->getFile('fotografie');
+        $description = $this->request->getPost('popis');
         $gender = $this->request->getPost('pohlavi');
         $birth = $this->request->getPost('narozeni');
 
@@ -174,6 +173,8 @@ class MainController extends BaseController
             'vek' => $this->request->getPost('vek'),
             'vaha' => $this->request->getPost('vaha'),
             'plemeno_id' => $this->request->getPost('plemeno_id'),
+            'fotografie' => $this->request->getFile('fotografie'),
+            'popis' => $this->request->getPost('popis'),
             'pohlavi' => $this->request->getPost('pohlavi'),
             'narozeni' => $this->request->getPost('narozeni')
 

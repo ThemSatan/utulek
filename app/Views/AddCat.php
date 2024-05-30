@@ -2,10 +2,6 @@
 <?=$this->section("content");?>
 
 <?php
-helper('form');
-echo form_open('CatModel/create'); 
-//<input type="number" min="1" max="70" class="form-control" id="inputBreed" placeholder="ID plemena, viz tabulka**" name="plemeno_id">
-
 if($message != NULL) {
   echo '<div class="bg-success">'.$message.
   '</div>';
@@ -13,7 +9,7 @@ if($message != NULL) {
 
 ?>
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="create" method="post" enctype="multipart/form-data">
 
 <div class="container">
             <div class="row">
@@ -83,6 +79,11 @@ if($message != NULL) {
     </div>
 
     <div class="form-group">
+      <label for="inputDesc" class="form-label mt-4">Popis</label>
+      <input type="text" class="form-control" id="inputDesc" aria-describedby="input" placeholder="Sem napište popis (není povinné)" name="popis">
+    </div>
+
+    <div class="form-group">
         <label for="inputFoto" class="form-label mt-4">Profilový obrázek kočky</label>
         <input type="file" class="form-control" id="inputFoto" aria-describedby="input" name="fotografie">
     </div>
@@ -94,9 +95,5 @@ if($message != NULL) {
   </div>
   <div class="col-3"></div>
 </div>
-
-<?php
-echo form_close();
-?>
 
 <?=$this->endSection();?>
