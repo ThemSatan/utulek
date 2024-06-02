@@ -4,34 +4,49 @@
 
 <?php
 if($message != NULL) {
-    echo '<div class="bg-success">'.$message.
+    echo '<div class="pop-up bg-success">'.$message.
     '</div>';
   }
 
-echo "<table class='table table-hover table-dark pt-2 mx-auto'>
-<tbody>";
+echo "<table class='table list-table table-hover pt-2 mx-auto'>
+<tbody class='table-dark'>";
 
+echo "<tr>
+            <td>ID</td>
+            <td>Jméno</td>
+            <td>Status</td>
+            <td>Věk</td>
+            <td>Váha</td>
+            <td>Plemeno</td>
+            <td>Popis</td>
+            <td>Pohlaví</td>
+            <td>Datum narození</td>
+            <td></td>
+            <td></td></tr>";
 
 foreach($array as $row){
 
 echo "<tr>
-            <td>".$row->id_kocka."</td>
-            <td>".$row->jmeno."</td>
-            <td>".$row->status."</td>
-            <td>".$row->vek."</td>
-            <td>".$row->vaha."</td>
-            <td>".$row->plemeno_id."</td>
-            <td>".$row->popis."</td>
-            <td>".$row->pohlavi."</td>
-            <td>".$row->narozeni."</td></tr>";
-            echo  anchor('CatModel/edit/'.$row->id_kocka,'Upravit',['class' => 'btn btn-info']).
-                anchor('CatModel/delete/'.$row->id_kocka,'Smazat',['class' => 'btn btn-danger']);
+            <td class='table-column small'>".$row->id_kocka."</td>
+            <td class='table-column'>".$row->jmeno."</td>
+            <td class='table-column'>".$row->status."</td>
+            <td class='table-column small'>".$row->vek."</td>
+            <td class='table-column small'>".$row->vaha."</td>
+            <td class='table-column'>".$row->nazev."</td>
+            <td class='table-text table-column'>".$row->popis."</td>
+            <td class='table-column'>".$row->pohlavi."</td>
+            <td class='table-column'>".$row->narozeni."</td>";
+            echo  "<td>".anchor('CatModel/edit/'.$row->id_kocka,'Upravit',['class' => 'btn'])."</td>".
+            "<td>".anchor('CatModel/delete/'.$row->id_kocka,'Smazat',['class' => 'btn'])."</td></tr>";
 
 }
 
 echo "</tbody>
 </table>";
 
+echo "<div class='d-flex flex-column justify-content-center align-items-center'>
+<p class= text-center>".$pager->links()."</p>
+</div>";
 ?>
 
 <?=$this->endSection();?>

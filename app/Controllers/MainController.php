@@ -134,7 +134,10 @@ class MainController extends BaseController
     /*SHOW ALL CATS PAGE*/
 
     function showAll() {
-        $data['array']= $this->kModel->orderBy("id_kocka","asc")->findAll();
+        $perpage=$this->config->variable;
+        $config = new CModel();
+        $data['array']= $this->kModel->join('ut_status','ut_status.id_status=ut_kocka.status','inner')->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['pager'] = $this->kModel->pager;
         $data['title'] = "Seznam všech Koček";
         $data['message'] = $this->session->message;
         $data['logged'] = $this->ionAuth->loggedIn();
@@ -213,8 +216,6 @@ class MainController extends BaseController
     function deleteForm(){
         $id = $this->request->getPost('id_kocka');
         $return = $this->kModel->delete($id);
-       
-        //var_dump($return);
         $this->session->setFlashdata('message','Kočka byla úspěšně odstraněna');
         return redirect()->route('CatModel/arrayList');
     }

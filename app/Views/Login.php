@@ -27,12 +27,10 @@ echo '
         <input type="password" class="form-control" id="pswd" placeholder="Heslo" name="pswd">
         <label for="pswd">Heslo</label>
     </div>
-    <button type="submit" class="btn submit mx-auto">Přihlášení</button>
-</div>
-';
+    <button type="submit" class="btn submit mx-auto">Přihlášení</button>';
+    echo form_close();
+echo '</div>';
 
-
-echo form_close();
 ?>
 
 

@@ -13,7 +13,7 @@ if($message != NULL) {
 <form action="../edit" method="post" enctype="multipart/form-data">
 
 <div class="text-center">
-  <h1 class="text-uppercase form-title"><i class="fa-solid fa-arrows-rotate fa-pulse"></i> Upravit kočku</h1>
+  <h1 class="text-uppercase form-title"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Upravit kočku</h1>
 </div>
 
     <input type="hidden" name="_method" value="PUT">

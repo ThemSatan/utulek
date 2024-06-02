@@ -111,9 +111,86 @@
 
 /*TABLE*/
 
-table{
+.list-table{
     margin-left: auto;
     margin-right: auto;
+    max-width:1200px;
+    max-height:100px;
+    text-align: center;
+    background-color: #796763;
+    transition: 0.3s;
+}
+
+@media (max-width: 500px){
+  table{
+    margin-top: 20px;
+    border-radius: 30px;
+    transition: 0.3s;
+    width: 200px;
+  }
+}
+
+table{
+  margin-top: 20px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+td{
+  transition: 0.3s;
+  border-radius: 10px;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
+}
+
+tr{
+  transition: 0.3s;
+}
+
+.table-dark {
+  --bs-table-color: #fff;
+  --bs-table-bg: #30120b00;
+  --bs-table-border-color: #4d515400;
+  --bs-table-striped-bg: #2c3034;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #373b3e;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #643b2100;
+  --bs-table-hover-color: #fff;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-text{
+  width:250px;
+  height:100px;
+  overflow-y: scroll;
+  display: block;
+  table-layout:fixed
+}
+
+.table-column{
+  text-align: center;
+  height:100px;
+  padding-bottom: auto;
+}
+
+.table-column:hover{
+  text-align: center;
+  padding-bottom: auto;
+  background-color: #ab9c95;
+}
+
+.small{
+  width:50px;
+}
+
+th{
+  padding-top: 30px;
+  padding-bottom: 12px;
+  padding: 8px;
+  transition: 0.3s;
 }
 
 /*-----*/
@@ -312,6 +389,7 @@ table{
   }
 
   /*-----*/
+
 /*-----*/
 
 /*PAGER*/
@@ -371,6 +449,18 @@ table{
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: 0.3s;
+}
+
+@media (max-width: 800px){
+  .form-group{
+    width:400px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.3s;
+  }
 }
 
 .login-group{
@@ -507,6 +597,7 @@ table{
   color: #fae5cf;
   border-radius: 10px;
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .pop-up-delete{
@@ -520,6 +611,29 @@ table{
   border-radius: 10px;
   padding-top: 10px;
   margin-top: 120px;
+}
+
+.results{
+  width: 200px;
+}
+
+/*-----*/
+
+/*SCROLLBAR*/
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #fae5cf; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #62442e;
+  border-radius:50px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #62442e; 
 }
 
 /*-----*/

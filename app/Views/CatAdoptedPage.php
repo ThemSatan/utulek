@@ -8,24 +8,42 @@
     }
 ?>
 
-<div class='offset-1'>
+<div class='offset-1 profiles-group'>
+  <div class="pop-up results bg-dark">
+    <?php
+    $conn = new mysqli('localhost', 'root', '', 'adamkova');
+
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+    $sql="SELECT id_kocka FROM ut_kocka WHERE status='3'";
+    
+    if ($result=mysqli_query($conn,$sql))
+      {
+      // Return the number of rows in result set
+      $rowcount=mysqli_num_rows($result);
+      printf("Počet výsledků: %d \n",$rowcount);
+      // Free result set
+      mysqli_free_result($result);
+      }
+    ?>
+  </div>
 <div class='row pt-2'>
-    <?php 
+  <?php 
 
-// Create connection
-$conn = new mysqli('localhost', 'root', '', 'adamkova');
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+  $conn = new mysqli('localhost', 'root', '', 'adamkova');
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
 
-$sql = "SELECT id_kocka, jmeno, fotografie, status FROM ut_kocka WHERE status='3'";
-$result = $conn->query($sql);
+  $sql = "SELECT id_kocka, jmeno, fotografie, status FROM ut_kocka WHERE status='3'";
+  $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+
     echo "<br>
-    <div class='card mb-3''>
+    <div class='card''>
       <div class='text-center'>
         <div class='container'>
             <a href='CatPage/".$row["id_kocka"]."'><img class='profiles' src='".base_url('public/assets/kocky/')."/".$row["fotografie"]. "'></a>".

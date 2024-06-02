@@ -12,7 +12,7 @@ if($message != NULL) {
 <form action="create" method="post" enctype="multipart/form-data">
 
 <div class="text-center">
-  <h1 class="text-uppercase form-title"><i class="fa-solid fa-arrows-rotate fa-pulse"></i> Přidat kočku</h1>
+  <h1 class="text-uppercase form-title"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Přidat kočku</h1>
 </div>
 
 

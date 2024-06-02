@@ -9,7 +9,26 @@
     }
 ?>
 
-<div class='offset-1'>
+<div class='offset-1 profiles-group'>
+  <div class="pop-up results bg-dark">
+    <?php
+    $conn = new mysqli('localhost', 'root', '', 'adamkova');
+
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+    $sql="SELECT id_kocka FROM ut_kocka WHERE status='2'";
+    
+    if ($result=mysqli_query($conn,$sql))
+      {
+      // Return the number of rows in result set
+      $rowcount=mysqli_num_rows($result);
+      printf("Počet výsledků: %d \n",$rowcount);
+      // Free result set
+      mysqli_free_result($result);
+      }
+    ?>
+  </div>
 <div class='row pt-2'>
     <?php 
 
