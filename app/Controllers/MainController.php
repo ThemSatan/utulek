@@ -49,7 +49,7 @@ class MainController extends BaseController
     {
         $perpage=$this->config->variable;
         $config = new CModel();
-        $data['array']= $this->kModel->join('ut_adopce','ut_adopce.kocka_id=ut_kocka.id_kocka','inner')->join('ut_majitel','ut_adopce.majitel_id=ut_majitel.id_majitel','inner')->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['array']= $this->kModel->orderBy("id_kocka","asc")->paginate($perpage);
         $data['pager'] = $this->kModel->pager;
         $data['title']="Naše Kočky";
         $data['logged'] = $this->ionAuth->loggedIn();
@@ -70,6 +70,19 @@ class MainController extends BaseController
         return view('CatUnavailablePage',$data);
     }
 
+    function catsAvPage()
+    {
+        $perpage=$this->config->variable;
+        $config = new CModel();
+        $data['array']= $this->kModel->orderBy("id_kocka","asc")->paginate($perpage);
+        $data['pager'] = $this->kModel->pager;
+        $data['title']="Naše Kočky";
+        $data['status'] = $this->kModel->status;
+        $data['logged'] = $this->ionAuth->loggedIn();
+        $data['adminCheck'] = $this->ionAuth->isAdmin();
+        return view('CatAvailablePage',$data);
+    }
+
     function catsSinglePage($id)
     {
         $data['array']= $this->kModel->join('ut_status','ut_status.id_status=ut_kocka.status','inner')->join('ut_plemeno','ut_plemeno.id_plemeno=ut_kocka.plemeno_id','inner')->where('id_kocka', $id)->orderBy("id_kocka","asc")->findAll();
@@ -79,6 +92,19 @@ class MainController extends BaseController
         $data['logged'] = $this->ionAuth->loggedIn();
         $data['adminCheck'] = $this->ionAuth->isAdmin();
         return view('CatSinglePage',$data);
+    }
+
+    function adoptionInfoPage()
+    {
+        $perpage=$this->config->variable;
+        $config = new CModel();
+        $data['array']= $this->kModel->join('ut_adopce','ut_adopce.kocka_id=ut_kocka.id_kocka','inner')->join('ut_majitel','ut_majitel.id_majitel=ut_adopce.majitel_id','inner')->join('ut_mesto','ut_mesto.id_mesto=ut_majitel.mesto_id','inner')->paginate($perpage);
+        $data['pager'] = $this->kModel->pager;
+        $data['title']="Naše Kočky";
+        $data['statusNumber'] = $this->kModel->status;
+        $data['logged'] = $this->ionAuth->loggedIn();
+        $data['adminCheck'] = $this->ionAuth->isAdmin();
+        return view('AdoptionInfoPage',$data);
     }
 
     /*CREATING*/
@@ -169,15 +195,13 @@ class MainController extends BaseController
         $birth = $this->request->getPost('narozeni');
 
         if ($fotografie->isValid() && !$fotografie->hasMoved()) {
-            /**$newFileName = substr($fotografie->getRandomName('alnum', 10), -10);
-
-
+            $newFileName = substr($fotografie->getRandomName('alnum', 10), -10);
             $fotografie->move('public/assets/kocky', $newFileName);
-            $request->file('fotografie')->move(public_path('public/assets/kocky'), $request->file('fotografie')->getClientOriginalName());
 
-            $product->image = 'public/assets/kocky' . $request->file('fotografie')->getClientOriginalName();/** */
         } else {
             $newFileName = 'default.png';
+            $fotografie->move('public/assets/kocky', $newFileName);
+            
         }
 
         $data = array(
@@ -193,8 +217,6 @@ class MainController extends BaseController
             'narozeni' => $this->request->getPost('narozeni')
 
         );
-        
-
         $this->kModel->save($data);
 
         $this->session->setFlashdata('message','Kočka byla úspěšně upravena');

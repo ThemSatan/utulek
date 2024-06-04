@@ -1,56 +1,32 @@
 <?=$this->extend("layout/master");?>
 <?=$this->section("content");?>
 
-<div class="container">
-    <div class='row no-gutters mx-auto' style="margin-top: 50px; ">
-        <?php 
-   
-        foreach($array as $row){
+<?php
+echo "<table class='table list-table table-hover pt-2 mx-auto'>
+<tbody class='table-dark'>";
 
-        ?>
-        
-            <?php
-            echo "<img class='mx-auto image-thumbnail' style='max-width:500px;  max-height:600px;  display: block; padding-bottom: 20px;' src='".base_url('public/assets/kocky/')."/".$row->fotografie. "'>";
-            ?>
+echo "<tr>
+            <td>Majitel</td>
+            <td>Datum adopce</td>
+            <td>Kočka</td></tr>";
 
-            <div class='card border-primary mb-3 mx-auto' style='height:auto; width: 500px; padding-left: 20px; padding-right: 20px; padding-top: 20px; background-color: #eff0f5;'>
-                <?php
-                echo "<h2 class='text-center'>".$row->jmeno."</h2>";
-                ?>
-                <hr>
-                <div class='card-body' >
-                    <p>
-                        <?php
-                        echo "<b>Status: </b>";
-                        if ($row->status == 'adoptovaná') {
-                            echo anchor('AdoptionInfoPage/'.$row->id_kocka,$row->status);
-                        }
-                        else {
-                            echo $row->status;
-                        }
-                        echo "<br>
-                        <hr>
-                        <b>Pohlaví: </b>".$row->pohlavi."<br>
-                        <b>Věk: </b>".$row->vek."<br>
-                        <b>Datum narození: </b>".$row->narozeni."<br>
-                        <b>Váha: </b>".$row->vaha."<br>
-                        <b>Plemeno: </b>".$row->nazev."<br>
-                        <hr>
-                        <b>Popis: </b>".$row->popis."<br>
-                        ";
-                        ?>
-                    </p>
-                </div>
-            </div>
-    
-<?php    
+foreach($array as $row){
+
+echo "<tr>
+            <td class='table-column'><b>Jméno: </b>".$row->jmeno_prijmeni."<br><b> Věk: </b>"
+            .$row->vek."<br><b>Město: </b>"
+            .$row->nazev_mesta."<br><b>Tel. číslo: </b>"
+            .$row->tel_cislo."<br>"."</td>
+            <td class='table-column'>".$row->datum_adopce."</td>
+            <td class='table-column'>".anchor('CatPage/'.$row->id_kocka,$row->jmeno, ['class' => 'btn'])."</td>";
 }
+
+echo "</tbody>
+</table>
+
+<div class='d-flex flex-column justify-content-center align-items-center'>
+<p class= text-center>".$pager->links()."</p>
+</div>";
 ?>
-
-            </div>
-        </div>
-    </div>
-
-
 
 <?=$this->endSection();?>

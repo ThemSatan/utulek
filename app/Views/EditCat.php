@@ -54,7 +54,7 @@ if($message != NULL) {
 
       <label for="inputBreed" class="form-label mt-4 titles">Plemeno</label>
       <input type="hidden" name="id" value="plemeno_id"/>
-      <select required='required' id="inputBreed" name="plemeno" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
+      <select required='required' id="inputBreed" name="plemeno_id" class="form-control" aria-describedby="input" placeholder="Vyberte plemeno">
         <option value="">
         <?php
           echo $array[0]->plemeno_id;

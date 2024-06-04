@@ -22,10 +22,12 @@
                     <i class="fa-solid fa-caret-left"></i>    
                 </button>
                 
-                <div class="dropdown-content" aria-labelledby="dropdownMenuButton"">
-                    <a class="dropdown-item" href="<?=base_url('CatPage')?>">Všechny Kočky</a>
-                    <a class="dropdown-item" href="<?=base_url('CatAdoptedPage')?>">Našli si domov</a>
-                    <a class="dropdown-item" href="<?=base_url('CatUnavailablePage')?>">Nedostupné kočky</a>
+                <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="<?=base_url('CatPage')?>"><i class="fa-solid fa-caret-right"></i> Všechny Kočky</a>
+                    <a class="dropdown-item" href="<?=base_url('CatAvailablePage')?>"><i class="fa-solid fa-caret-right"></i> Dostupné kočky</a>
+                    <a class="dropdown-item" href="<?=base_url('CatAdoptedPage')?>"><i class="fa-solid fa-caret-right"></i> Našli si domov</a>
+                    <a class="dropdown-item" href="<?=base_url('AdoptionInfoPage')?>"><i class="fa-solid fa-right-long"></i> Informace o adopcích</a>
+                    <a class="dropdown-item" href="<?=base_url('CatUnavailablePage')?>"><i class="fa-solid fa-caret-right"></i> Nedostupné kočky</a>
                 </div>
             </div>
                 <li class="nav-item">

@@ -3,8 +3,7 @@
 
 <?php
     if ($adminCheck){
-      echo 
-      anchor('CatModel/new','Přidat',['class' => 'btn edit']).
+      echo anchor('CatModel/new','Přidat',['class' => 'btn edit']).
       anchor('CatModel/arrayList','Upravit',['class' => 'btn edit']);
     }
 ?>
@@ -32,9 +31,7 @@
 <div class='row pt-2'>
     <?php 
 
-// Create connection
 $conn = new mysqli('localhost', 'root', '', 'adamkova');
-// Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
@@ -44,6 +41,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
+    
     echo "<br>
     <div class='card mb-3''>
       <div class='text-center'>
