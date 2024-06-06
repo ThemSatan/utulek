@@ -106,6 +106,28 @@ _Karla Šoustková_
 -	Zobrazení - karty
 -	Modální okno a alerty
 
+## Popis jednotlivých metod a proměnných
+### Kontrolery
+
+__1. 'MainController'__
+
+```__construct()```: Nastaví modely pro kočky (kModel), plemena (pModel), fotografie (fModel), majitele (oModel), statusy (sModel) a konfiguraci (CModel).
+
+```initController()```: Nahrazuje základní nastavení kontroleru a nastavuje knihovnu _IonAuth_ pro přihlašování uživatelů.
+
+__Hlavní stránky__:
+
+```catsPage():``` Načte kočky z databáze a zobrazí je na stránce. Nastaví stránkování, titulek stránky a stav přihlášení.
+
+```catsAdoptPage():``` Načte adoptované kočky z databáze a zobrazí je na stránce. Stejně jako catsPage nastaví potřebná data pro zobrazení.
+
+```catsUnavPage():``` Načte kočky, _které nejsou k dispozici_ a zobrazuje je na stránce. Nastaví data pro zobrazení včetně statusu koček.
+
+```catsAvPage():``` Stejné jako catsUnavPage() ale jen pro _dostupné kočky k adopci_.
+
+```catsSinglePage($id):``` Načte informace o konkrétní kočce podle zadaného ID. Zobrazuje informace o kočce a jejím majiteli.
+
+
 
 
 
