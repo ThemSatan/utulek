@@ -150,6 +150,7 @@ Načítá tyto informace s omezením na počet položek na stránku (perpage). Z
 ```deleteForm():``` Zpracuje formulář pro smazání kočky. Smaže kočku z databáze a zobrazí zprávu o úspěšném smazání.
 
 __Proměnné__:
+
 ```$kModel, $pModel, $fModel, $oModel, $sModel:``` Instance modelu pro správu dat o kočkách, plemenech, fotografiích, majitelích a statusech
 
 ```$config:```  Vytváří novou instanci konfigurační třídy CModel pro nastavení různých parametrů.
@@ -159,6 +160,26 @@ __Proměnné__:
 ```$session:``` Objekt session pro práci se session daty (Např. nastavení flash dat -dočasná data uložená v relaci)
 
 __2. 'Auth'__
+
+```login():``` Zobrazení přihlašovacího formuláře. Nejprve se přes instanci session získává případná zpráva pro uživatele, která byla uložena jako flash data. Poté se ověřuje, zda je uživatel přihlášen (loggedIn() - IonAuth) a tato informace se uloží do proměnné $data['logged'].
+
+```register():``` stejné jako u login(), ale pro registraci
+
+```loginComplete():``` Zpracovává data z přihlašovacího formuláře. Přijímá email a heslo, ověřuje je pomocí IonAuth knihovny a přesměruje uživatele na příslušnou stránku podle jejich role (administrátor nebo běžný uživatel). Pokud přihlášení selže, zobrazí chybovou zprávu a přesměruje uživatele zpět na přihlašovací stránku.
+
+```logoutComplete():``` Odhlásí uživatele pomocí IonAuth knihovny a přesměruje jej na hlavní stránku s kočkami.
+
+```registerComplete():``` Zpracovává data z registračního formuláře. Přijímá uživatelské jméno, email a heslo. Registruje nového uživatele pomocí IonAuth knihovny a přesměruje jej na přihlašovací stránku.
+
+__Proměnné:__
+
+```$ionAuth:``` Instance třídy IonAuth. Autentizace uživatelů.
+
+```$data['message']:``` Zpráva, která bude zobrazena uživateli, například po neúspěšném pokusu o přihlášení.
+
+```$data['logged']:``` Hodnota označující, zda je uživatel _aktuálně_ přihlášen.
+
+```$data['title']:``` Název stránky, který bude zobrazen v nadpisu formuláře.
 
 
 
