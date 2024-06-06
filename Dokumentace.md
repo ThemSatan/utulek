@@ -39,3 +39,7 @@ __Autor knihovny:__ Nils Adermann, Jordi Boggiano
 
 __Licence knihovny:__ MIT License
 
+
+
+## Notace
+
