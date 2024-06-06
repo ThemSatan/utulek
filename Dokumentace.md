@@ -127,6 +127,20 @@ __Hlavní stránky__:
 
 ```catsSinglePage($id):``` Načte informace o konkrétní kočce podle zadaného ID. Zobrazuje informace o kočce a jejím majiteli.
 
+------------
+
+```adoptionInfoPage():``` Získá hodnotu perpage (kolik položek se má zobrazit na jedné stránce). Spojuje tabulky, aby získala informace o kočkách, jejich majitelích a městech.
+Načítá tyto informace s omezením na počet položek na stránku (perpage). Zobrazí stránku AdoptionInfoPage s připravenými daty.
+```addCat():``` Načte data potřebná pro formulář pro přidání nové kočky, jako jsou plemena a status. Zobrazí formulář.
+```createForm():``` Zpracuje formulář pro přidání nové kočky. Uloží data nové kočky do databáze a zobrazí zprávu o úspěšném vytvoření.
+```showAll():``` Zobrazuje všechny kočky z databáze na jedné stránce.
+```editCat($id):``` Získá informace o konkrétní kočce z databáze podle jejího ID a uloží je do proměnné $data['array']. Získá seznam všech plemen a uloží je do proměnné $data['list']. Získá zprávu ze 'session' a uloží ji do proměnné $data['message']. Zkontroluje, zda je uživatel přihlášen, a uloží výsledek do proměnné $data['logged']. Vrátí 'view' pro úpravu kočky s danými daty.
+```editForm():``` Zpracuje formulář pro editaci kočky. Uloží změny do databáze a nastaví zprávu o úspěšné editaci. Získá hodnoty z formuláře zaslaného metodou POST. Kontroluje, zda je nahraná fotografie platná a zda již nebyla přesunuta. _Pokud je platná:_
+- Vygeneruje náhodné jméno pro fotografii.
+- Přesune fotografii do složky public/assets/kocky s novým názvem.
+- Pokud fotografie není platná nebo se již přesunula, nastaví výchozí jméno fotografie na 'default.png' a přesune ji do složky public/assets/kocky.
+
+
 
 
 
